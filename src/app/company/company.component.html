@@ -1,0 +1,11 @@
+<p>company works!</p>
+{{ company_name }}
+
+{{ company.id }}
+{{ company.name | uppercase }}
+{{ company.gst }}
+
+<div>
+  <label>Company Name:</label>
+  <input placeholder="Company Name" [(ngModel)]="company.name" />
+</div>
