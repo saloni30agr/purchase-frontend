@@ -1,11 +1,25 @@
-<p>company works!</p>
+<!-- <p>company works!</p>
 {{ company_name }}
 
 {{ company.id }}
-{{ company.name | uppercase }}
-{{ company.gst }}
 
+{{ company.gst }} -->
+{{ company.name | uppercase }}
 <div>
   <label>Company Name:</label>
   <input placeholder="Company Name" [(ngModel)]="company.name" />
 </div>
+
+<h2>Companies List</h2>
+<ul class="companies">
+  <li *ngFor="let company of companies" (click)="onSelect(company)">
+    {{ company.id }} {{ company.name }} {{ company.gst }}
+  </li>
+</ul>
+<!-- 
+<div *ngIf="selectedCompany">
+  <h2>Selected Company Details</h2>
+  {{ selectedCompany.name }}
+</div> -->
+
+<app-company-detail [company]="selectedCompany"></app-company-detail>

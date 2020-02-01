@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Company } from "./../company";
+// import { COMPANIES } from "./../company_list";
+import { CompanyService } from "./../company.service";
 
 @Component({
   selector: "app-company",
@@ -7,9 +9,11 @@ import { Company } from "./../company";
   styleUrls: ["./company.component.css"]
 })
 export class CompanyComponent implements OnInit {
-  constructor() {}
+  constructor(private companyService: CompanyService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCompanies();
+  }
 
   company_name = "First Company";
   company: Company = {
@@ -17,4 +21,17 @@ export class CompanyComponent implements OnInit {
     name: "name",
     gst: "gstnumber"
   };
+  companies: Company[];
+  selectedCompany: Company;
+
+  onSelect(company: Company): void {
+    this.selectedCompany = company;
+  }
+
+  getCompanies(): void {
+    // this.companies = this.companyService.getCompanies();
+    this.companyService
+      .getCompanies()
+      .subscribe(companies => (this.companies = companies));
+  }
 }
