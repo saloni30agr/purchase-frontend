@@ -1,18 +1,17 @@
-<!-- <p>company works!</p>
-{{ company_name }}
-
-{{ company.id }}
-
-{{ company.gst }} -->
 <h1>Companies List</h1>
 
 <h2>Add New Company</h2>
-<!-- {{ company.name | uppercase }} -->
 <div>
   <label>Company Name:</label>
   <input placeholder="Company Name" #companyName />
   <input placeholder="Company GST Number" #companyGST />
-  <button (click)="add(companyName.value, companyGST.value); companyName.value = ''; companyGST.value=''">
+  <button
+    (click)="
+      add(companyName.value, companyGST.value);
+      companyName.value = '';
+      companyGST.value = ''
+    "
+  >
     Add
   </button>
 </div>

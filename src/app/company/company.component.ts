@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Company } from "./../company";
-// import { COMPANIES } from "./../company_list";
 import { CompanyService } from "./../company.service";
 
 @Component({
@@ -15,18 +14,12 @@ export class CompanyComponent implements OnInit {
     this.getCompanies();
   }
 
-  company_name = "First Company";
-  company: Company = {
-    id: 1,
-    name: "name",
-    gst: "gstnumber"
-  };
-  companies: Company[];
-  selectedCompany: Company;
+  // selectedCompany: Company;
 
-  onSelect(company: Company): void {
-    this.selectedCompany = company;
-  }
+  // onSelect(company: Company): void {
+  //   this.selectedCompany = company;
+  // }
+  companies: Company[];
 
   getCompanies(): void {
     // this.companies = this.companyService.getCompanies();

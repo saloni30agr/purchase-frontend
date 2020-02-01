@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, map, tap } from "rxjs/operators";
 
 import { Company } from "./company";
-// import { COMPANIES } from "./company_list";
 
 @Injectable({
   providedIn: "root"
