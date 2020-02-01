@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, tap } from "rxjs/operators";
 
 import { Company } from "./company";
 
@@ -12,6 +12,7 @@ export class CompanyService {
   constructor(private http: HttpClient) {}
 
   private companyUrl = "http://127.0.0.1:8000/invoice/company/";
+
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
@@ -42,13 +43,13 @@ export class CompanyService {
     );
   }
 
-  getCompany(id: number): Observable<Company> {
-    const url = `${this.companyUrl}/${id}`;
-    return this.http.get<Company>(url).pipe(
-      tap(_ => console.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Company>(`getCompany id=${id}`))
-    );
-  }
+  // getCompany(id: number): Observable<Company> {
+  //   const url = `${this.companyUrl}/${id}`;
+  //   return this.http.get<Company>(url).pipe(
+  //     tap(_ => console.log(`fetched hero id=${id}`)),
+  //     catchError(this.handleError<Company>(`getCompany id=${id}`))
+  //   );
+  // }
 
   /** POST: add a new hero to the server */
   addCompany(company: Company): Observable<Company> {

@@ -1,0 +1,27 @@
+<p>product works!</p>
+
+<h2>Add New Product</h2>
+<div>
+  <label>Product Name:</label>
+  <input placeholder="Product Name" #productName />
+  <input placeholder="Product Cost" #productCost />
+  <input placeholder="Product Compant" #productCompany />
+  <button
+    (click)="
+      add(productName.value, productCompany.value, productCost.value);
+      productName.value = '';
+      productCompany.value = '';
+      productCost.value = ''
+    "
+  >
+    Add
+  </button>
+</div>
+
+<h2>Product List</h2>
+<ul class="products">
+  <li *ngFor="let product of products">
+    {{ product.id }} {{ product.name }} {{ product.cost }}
+    {{ product.company.name }}
+  </li>
+</ul>
