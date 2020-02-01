@@ -4,10 +4,17 @@
 {{ company.id }}
 
 {{ company.gst }} -->
-{{ company.name | uppercase }}
+<h1>Companies List</h1>
+
+<h2>Add New Company</h2>
+<!-- {{ company.name | uppercase }} -->
 <div>
   <label>Company Name:</label>
-  <input placeholder="Company Name" [(ngModel)]="company.name" />
+  <input placeholder="Company Name" #companyName />
+  <input placeholder="Company GST Number" #companyGST />
+  <button (click)="add(companyName.value, companyGST.value); companyName.value = ''; companyGST.value=''">
+    Add
+  </button>
 </div>
 
 <h2>Companies List</h2>
@@ -22,4 +29,4 @@
   {{ selectedCompany.name }}
 </div> -->
 
-<app-company-detail [company]="selectedCompany"></app-company-detail>
+<!-- <app-company-detail [company]="selectedCompany"></app-company-detail> -->

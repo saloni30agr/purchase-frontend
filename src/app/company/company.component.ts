@@ -34,4 +34,13 @@ export class CompanyComponent implements OnInit {
       .getCompanies()
       .subscribe(companies => (this.companies = companies));
   }
+
+  add(name: string, gst: string): void {
+    name = name.trim();
+    gst = gst.trim();
+    if (!name || !gst) return;
+    this.companyService
+      .addCompany({ name, gst } as Company)
+      .subscribe(newCompany => this.companies.push(newCompany));
+  }
 }
