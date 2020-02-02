@@ -3,7 +3,11 @@
 <h2>Add New Purchase Order</h2>
 <div>
   <label>Purchase Order Name:</label>
-  <input placeholder="Purchase Order Number" #purchaseOrderNumber />
+  <input
+    placeholder="Purchase Order Number"
+    #purchaseOrderNumber
+    value="{{ nextPONumber }}"
+  />
   <div>
     <label for="selectedCompany"> Select Company: </label>
     <select
@@ -23,8 +27,17 @@
           product.name
         }}</option>
       </select>
+      <div *ngIf="selectedProduct">
+        <label for="Product Cost"> Product Cost: </label>
+        <input
+          placeholder="Product Cost"
+          #productCost
+          value="{{ selectedProduct.cost }}"
+        />
+      </div>
     </div>
   </div>
+  <label for="Product Quantity"> Product Quantity: </label>
   <input placeholder="Purchase Order Quantity" #purchaseOrderQuantity />
   <button
     (click)="
@@ -41,5 +54,10 @@
 <ul class="purchaseOrders">
   <li *ngFor="let purchaseOrder of purchaseOrders">
     {{ purchaseOrder.po_number }}
+    {{ purchaseOrder.company_name }}
+    {{ purchaseOrder.product_name }}
+    {{ purchaseOrder.quantity }}
+    {{ purchaseOrder.product_cost }}
+    {{ purchaseOrder.total_price }}
   </li>
 </ul>

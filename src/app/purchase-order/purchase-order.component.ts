@@ -23,9 +23,11 @@ export class PurchaseOrderComponent implements OnInit {
   selectedCompany: Company;
   selectedProduct: Product;
   purchaseOrders: PurchaseOrder[];
+  nextPONumber: string;
   ngOnInit() {
     this.getPurchaseOrders();
     this.getCompanies();
+    this.generatePONumber();
   }
 
   getCompanies(): void {
@@ -45,6 +47,19 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(purchaseOrders => (this.purchaseOrders = purchaseOrders));
   }
 
+  dec2hex(dec: number): string {
+    return ("0" + dec.toString(16)).substr(-2);
+  }
+
+  generateId(len: number): string {
+    var arr = new Uint8Array((len || 40) / 2);
+    window.crypto.getRandomValues(arr);
+    return Array.from(arr, this.dec2hex).join("");
+  }
+  generatePONumber(): void {
+    this.nextPONumber = this.generateId(8);
+    console.warn(this.nextPONumber);
+  }
   add(po_number: string, quantity: number): void {
     po_number = po_number.trim();
     let company = this.selectedCompany.id;
@@ -63,5 +78,6 @@ export class PurchaseOrderComponent implements OnInit {
       .subscribe(newPurchaseOrder =>
         this.purchaseOrders.push(newPurchaseOrder)
       );
+    this.generatePONumber();
   }
 }

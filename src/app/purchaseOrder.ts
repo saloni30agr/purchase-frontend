@@ -8,4 +8,7 @@ export class PurchaseOrder {
   product: number;
   quantity: number;
   total_price: number;
+  company_name: string;
+  product_name: string;
+  product_cost: string;
 }
