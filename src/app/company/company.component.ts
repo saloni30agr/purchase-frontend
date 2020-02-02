@@ -13,12 +13,6 @@ export class CompanyComponent implements OnInit {
   ngOnInit() {
     this.getCompanies();
   }
-
-  // selectedCompany: Company;
-
-  // onSelect(company: Company): void {
-  //   this.selectedCompany = company;
-  // }
   companies: Company[];
 
   getCompanies(): void {

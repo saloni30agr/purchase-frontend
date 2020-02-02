@@ -5,12 +5,23 @@
   <label>Product Name:</label>
   <input placeholder="Product Name" #productName />
   <input placeholder="Product Cost" #productCost />
-  <input placeholder="Product Compant" #productCompany />
+  <label for="selectedCompany"> Select Company: </label>
+  <select
+    name="productCompany"
+    id="productCompany"
+    [(ngModel)]="selectedCompany"
+  >
+    <option
+      *ngFor="let company of companies"
+      [(ngValue)]="company.id"
+      (click)="onSelect(company)"
+      >{{ company.name }}</option
+    >
+  </select>
   <button
     (click)="
-      add(productName.value, productCompany.value, productCost.value);
+      add(productName.value, productCost.value);
       productName.value = '';
-      productCompany.value = '';
       productCost.value = ''
     "
   >
@@ -21,7 +32,7 @@
 <h2>Product List</h2>
 <ul class="products">
   <li *ngFor="let product of products">
-    {{ product.id }} {{ product.name }} {{ product.cost }}
+    {{ product.name }} {{ product.cost }}
     {{ product.company.name }}
   </li>
 </ul>
