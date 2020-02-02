@@ -11,12 +11,9 @@
     id="productCompany"
     [(ngModel)]="selectedCompany"
   >
-    <option
-      *ngFor="let company of companies"
-      [(ngValue)]="company.id"
-      (click)="onSelect(company)"
-      >{{ company.name }}</option
-    >
+    <option *ngFor="let company of companies" [(ngValue)]="company">{{
+      company.name
+    }}</option>
   </select>
   <button
     (click)="
@@ -33,6 +30,6 @@
 <ul class="products">
   <li *ngFor="let product of products">
     {{ product.name }} {{ product.cost }}
-    {{ product.company.name }}
+    {{ product.company }}
   </li>
 </ul>

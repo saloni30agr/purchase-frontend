@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
   }
   products: Product[];
   companies: Company[];
-  selectedCompany: number;
+  selectedCompany: Company;
 
   getCompanies(): void {
     this.companyService
@@ -31,13 +31,13 @@ export class ProductComponent implements OnInit {
 
   getProducts(): void {
     this.productService
-      .getProducts()
+      .getProducts(null)
       .subscribe(products => (this.products = products));
   }
 
   add(name: string, cost: number): void {
     name = name.trim();
-    let company = this.selectedCompany;
+    let company = this.selectedCompany.id;
     console.log(name, company, cost);
     if (!name || !company || !cost) return;
     this.productService

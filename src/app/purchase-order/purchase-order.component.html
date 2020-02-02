@@ -1,1 +1,45 @@
 <p>purchase-order works!</p>
+
+<h2>Add New Purchase Order</h2>
+<div>
+  <label>Purchase Order Name:</label>
+  <input placeholder="Purchase Order Number" #purchaseOrderNumber />
+  <div>
+    <label for="selectedCompany"> Select Company: </label>
+    <select
+      name="productCompany"
+      id="productCompany"
+      [(ngModel)]="selectedCompany"
+      (click)="getProducts()"
+    >
+      <option *ngFor="let company of companies" [(ngValue)]="company">{{
+        company.name
+      }}</option>
+    </select>
+    <div *ngIf="products && products.length > 0">
+      <label for="selectedProduct"> Select Product: </label>
+      <select name="productName" id="productName" [(ngModel)]="selectedProduct">
+        <option *ngFor="let product of products" [(ngValue)]="product">{{
+          product.name
+        }}</option>
+      </select>
+    </div>
+  </div>
+  <input placeholder="Purchase Order Quantity" #purchaseOrderQuantity />
+  <button
+    (click)="
+      add(purchaseOrderNumber.value, purchaseOrderQuantity.value);
+      purchaseOrderNumber.value = '';
+      purchaseOrderQuantity.value = ''
+    "
+  >
+    Add
+  </button>
+</div>
+
+<h2>Purchase Order List</h2>
+<ul class="purchaseOrders">
+  <li *ngFor="let purchaseOrder of purchaseOrders">
+    {{ purchaseOrder.po_number }}
+  </li>
+</ul>

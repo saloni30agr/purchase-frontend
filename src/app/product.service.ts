@@ -23,8 +23,12 @@ export class ProductService {
     };
   }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productUrl).pipe(
+  getProducts(company: number): Observable<Product[]> {
+    let productUrl = this.productUrl;
+    if (company) {
+      productUrl = `${this.productUrl}?company=${company}`;
+    }
+    return this.http.get<Product[]>(productUrl).pipe(
       tap(_ => console.log("fetched Products")),
       catchError(this.handleError<Product[]>("getProducts", []))
     );
